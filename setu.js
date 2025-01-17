@@ -34,10 +34,11 @@ export class setu extends plugin {
     if (num > 20) return e.reply("不能超过20张图片,重新发送涩图");
 
     let url = `https://api.lolicon.app/setu/v2?r18=0&num=${num}`;
-    if ((temp.length === 1 && /^\d+$/.test(temp[0])) || temp[0] === '默认') {
+    if (temp.length === 1 && /^\d+$/.test(temp[0]) || temp[0] === '默认') {
     } else {
-      temp.slice(0, n - 1).forEach(tag => url += `&tag=${tag}`);
+      temp.slice(0, n).forEach(tag => url += `&tag=${tag}`);
     }
+    console.log(url)
 
     fetch(url).then(response => {
       if (!response.ok) return e.reply('response error');
